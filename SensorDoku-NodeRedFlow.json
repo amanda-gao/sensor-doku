@@ -1,0 +1,615 @@
+[
+    {
+        "id": "087c074128798dd1",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d6a91f5c71abff91",
+        "type": "inject",
+        "z": "087c074128798dd1",
+        "name": "Mensagem",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 240,
+        "y": 360,
+        "wires": [
+            [
+                "f38362d2c8e0a4fb",
+                "0930aa6ff91aa611",
+                "a1736fc647a9225f"
+            ]
+        ]
+    },
+    {
+        "id": "f38362d2c8e0a4fb",
+        "type": "debug",
+        "z": "087c074128798dd1",
+        "name": "Nome",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload.nome",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 490,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "0930aa6ff91aa611",
+        "type": "debug",
+        "z": "087c074128798dd1",
+        "name": "Idade",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload.idade",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 490,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "a1736fc647a9225f",
+        "type": "debug",
+        "z": "087c074128798dd1",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 510,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "f231a2477e109b7e",
+        "type": "comment",
+        "z": "087c074128798dd1",
+        "name": "Yo doku",
+        "info": "",
+        "x": 870,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "7c3c074cbcb68b56",
+        "type": "mqtt in",
+        "z": "087c074128798dd1",
+        "name": "",
+        "topic": "Sensor/Doku",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "4e5536fbe5fe22bd",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 250,
+        "y": 1220,
+        "wires": [
+            [
+                "930dc7d3d16dfddf"
+            ]
+        ]
+    },
+    {
+        "id": "b064ccd49e329c33",
+        "type": "comment",
+        "z": "087c074128798dd1",
+        "name": "Alert Route",
+        "info": "",
+        "x": 180,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "945ddb2a8e9eeb61",
+        "type": "comment",
+        "z": "087c074128798dd1",
+        "name": "Panel",
+        "info": "",
+        "x": 170,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "debdf0f751d50e67",
+        "type": "switch",
+        "z": "087c074128798dd1",
+        "name": "Verify NO2 (Dióxido de Nitrogênio)",
+        "property": "payload.no2.level",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lte",
+                "v": "40",
+                "vt": "num"
+            },
+            {
+                "t": "gt",
+                "v": "40",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1140,
+        "y": 800,
+        "wires": [
+            [],
+            [
+                "071f92530609e6e0"
+            ]
+        ]
+    },
+    {
+        "id": "7d5ed706756797da",
+        "type": "switch",
+        "z": "087c074128798dd1",
+        "name": "Verify R22 (Clorodifluorometano)",
+        "property": "payload.r22.level",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lte",
+                "v": "70",
+                "vt": "num"
+            },
+            {
+                "t": "gt",
+                "v": "70",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1140,
+        "y": 860,
+        "wires": [
+            [],
+            [
+                "0aedc207ec2ec88f"
+            ]
+        ]
+    },
+    {
+        "id": "116c5bbaa403edd3",
+        "type": "switch",
+        "z": "087c074128798dd1",
+        "name": "Verify CO2 (Monóxido de Carbono)",
+        "property": "payload.co2.level",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lte",
+                "v": "80",
+                "vt": "num"
+            },
+            {
+                "t": "gt",
+                "v": "80",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1140,
+        "y": 920,
+        "wires": [
+            [],
+            [
+                "5a72ac4e28d6a950"
+            ]
+        ]
+    },
+    {
+        "id": "f5903765cc8d0c0e",
+        "type": "mqtt in",
+        "z": "087c074128798dd1",
+        "name": "",
+        "topic": "Sensor/Doku",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "4e5536fbe5fe22bd",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 270,
+        "y": 820,
+        "wires": [
+            [
+                "44fdf334dadfc78b"
+            ]
+        ]
+    },
+    {
+        "id": "44fdf334dadfc78b",
+        "type": "json",
+        "z": "087c074128798dd1",
+        "name": "Json",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 610,
+        "y": 820,
+        "wires": [
+            [
+                "02323e1ac3579cad",
+                "debdf0f751d50e67",
+                "7d5ed706756797da",
+                "116c5bbaa403edd3"
+            ]
+        ]
+    },
+    {
+        "id": "02323e1ac3579cad",
+        "type": "switch",
+        "z": "087c074128798dd1",
+        "name": "Verify CL2 (Cloro)",
+        "property": "payload.cl2.level",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lte",
+                "v": "15",
+                "vt": "num"
+            },
+            {
+                "t": "gt",
+                "v": "15",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1090,
+        "y": 740,
+        "wires": [
+            [],
+            [
+                "50a0cfb5a8d232f2"
+            ]
+        ]
+    },
+    {
+        "id": "5a72ac4e28d6a950",
+        "type": "template",
+        "z": "087c074128798dd1",
+        "name": "Template CO2",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n    \"Suggestions\": \"Keep Closer!\",\n} ",
+        "output": "yaml",
+        "x": 1560,
+        "y": 940,
+        "wires": [
+            [
+                "2e1776c21a956fed",
+                "5eb36aec089815d5"
+            ]
+        ],
+        "icon": "node-red/parser-html.svg"
+    },
+    {
+        "id": "0aedc207ec2ec88f",
+        "type": "template",
+        "z": "087c074128798dd1",
+        "name": "Template R22",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n    \"Suggestions\": \"Keep Closer!\",\n} ",
+        "output": "yaml",
+        "x": 1560,
+        "y": 880,
+        "wires": [
+            [
+                "2e1776c21a956fed",
+                "5eb36aec089815d5"
+            ]
+        ],
+        "icon": "node-red/parser-html.svg"
+    },
+    {
+        "id": "071f92530609e6e0",
+        "type": "template",
+        "z": "087c074128798dd1",
+        "name": "Template NO2",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n    \"Suggestions\": \"Keep Closer!\",\n} ",
+        "output": "yaml",
+        "x": 1560,
+        "y": 820,
+        "wires": [
+            [
+                "2e1776c21a956fed",
+                "5eb36aec089815d5"
+            ]
+        ],
+        "icon": "node-red/parser-html.svg"
+    },
+    {
+        "id": "50a0cfb5a8d232f2",
+        "type": "template",
+        "z": "087c074128798dd1",
+        "name": "Template CL2",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n    \"Suggestions\": \"Keep Closer!\",\n} ",
+        "output": "yaml",
+        "x": 1560,
+        "y": 760,
+        "wires": [
+            [
+                "2e1776c21a956fed",
+                "5eb36aec089815d5"
+            ]
+        ],
+        "icon": "node-red/parser-html.svg"
+    },
+    {
+        "id": "2e1776c21a956fed",
+        "type": "mqtt out",
+        "z": "087c074128798dd1",
+        "name": "",
+        "topic": "Alert/House",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "4e5536fbe5fe22bd",
+        "x": 2070,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "72772bd60b94c639",
+        "type": "e-mail",
+        "z": "087c074128798dd1",
+        "server": "smtp.gmail.com",
+        "port": "465",
+        "secure": true,
+        "tls": true,
+        "name": "",
+        "dname": "Send email to Jubileu",
+        "credentials": {},
+        "x": 2300,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "5eb36aec089815d5",
+        "type": "function",
+        "z": "087c074128798dd1",
+        "name": "",
+        "func": "// {\n//   contentType:        // The MIME content description\n//   fileName:           // A suggested file name associated with this attachment\n//   transferEncoding:   // How was the original email attachment encodded?\n//   contentDisposition: // Unknown\n//   generatedFileName:  // A suggested file name associated with this attachment\n//   contentId:          // A unique generated ID for this attachment\n//   checksum:           // A checksum against the data\n//   length:             // Size of data in bytes\n//   content:            // The actual content of the data contained in a Node.js Buffer object\n//                       // We can turn this into a base64 data string with content.toString('base64')\n// }\n\n\n//Assunto do Email\nmsg.topic=\"Alert Gas Level\";\n\n// Email que irá receber\nmsg.to=msg.payload.email;\n\n// Corpo do Email a ser enviado \nmsg.payload=msg.payload.Suggestions;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2060,
+        "y": 840,
+        "wires": [
+            [
+                "72772bd60b94c639"
+            ]
+        ]
+    },
+    {
+        "id": "a45f2b722a92e1c7",
+        "type": "ui_gauge",
+        "z": "087c074128798dd1",
+        "name": "Level CL2",
+        "group": "298d6b41181a0045",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "",
+        "label": "%",
+        "format": "{{msg.payload.cl2.level}}",
+        "min": 0,
+        "max": "30",
+        "colors": [
+            "#008a00",
+            "#ebd700",
+            "#c80e0e"
+        ],
+        "seg1": "10",
+        "seg2": "15",
+        "className": "",
+        "x": 780,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "930dc7d3d16dfddf",
+        "type": "json",
+        "z": "087c074128798dd1",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 530,
+        "y": 1220,
+        "wires": [
+            [
+                "a45f2b722a92e1c7",
+                "9b1c4613b3cf6fed",
+                "ce16098ec5170717",
+                "480b49686db59d41"
+            ]
+        ]
+    },
+    {
+        "id": "9b1c4613b3cf6fed",
+        "type": "ui_gauge",
+        "z": "087c074128798dd1",
+        "name": "Level NO2",
+        "group": "298d6b41181a0045",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "",
+        "label": "%",
+        "format": "{{msg.payload.no2.level}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#008a00",
+            "#ebd700",
+            "#c80e0e"
+        ],
+        "seg1": "30",
+        "seg2": "40",
+        "className": "",
+        "x": 790,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "ce16098ec5170717",
+        "type": "ui_gauge",
+        "z": "087c074128798dd1",
+        "name": "Level R22",
+        "group": "298d6b41181a0045",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "",
+        "label": "%",
+        "format": "{{msg.payload.r22.level}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#008a00",
+            "#ebd700",
+            "#c80e0e"
+        ],
+        "seg1": "40",
+        "seg2": "70",
+        "className": "",
+        "x": 780,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "480b49686db59d41",
+        "type": "ui_gauge",
+        "z": "087c074128798dd1",
+        "name": "Level CO2",
+        "group": "298d6b41181a0045",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "",
+        "label": "%",
+        "format": "{{msg.payload.co2.level}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#008a00",
+            "#ebd700",
+            "#c80e0e"
+        ],
+        "seg1": "40",
+        "seg2": "80",
+        "className": "",
+        "x": 790,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "4e5536fbe5fe22bd",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.100.4",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "Alert/House",
+        "birthQos": "0",
+        "birthPayload": "{\"msg\": \"foi\"}",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "298d6b41181a0045",
+        "type": "ui_group",
+        "name": "Gás",
+        "tab": "891eebb19feea215",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "891eebb19feea215",
+        "type": "ui_tab",
+        "name": "Sensor de Gases Tóxicos",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
