@@ -26,7 +26,7 @@ docker run                 - Execute este contêiner, inicialmente compilando lo
 -it                        - Anexar uma sessão de terminal para que possamos ver o que está acontecendo
 -p 1880:1880               - Conecte a porta local 1880 à porta interna exposta 1880
 -v node_red_data:/data     - Monte um volume chamado docker chamado `node_red_data` no diretório container /data para que todas as alterações feitas nos fluxos sejam mantidas
---name sensor-doku   - Dê a esta máquina um nome local amigável
+--name sensor-doku         - Dê a esta máquina um nome local amigável
 nodered/node-red           - A imagem para basear - atualmente Node-RED v1.2.0
 ```
 
